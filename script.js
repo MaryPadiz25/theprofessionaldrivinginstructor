@@ -25,6 +25,21 @@ const INSTRUCTORS = [
     bio: "Rob is a professional driving instructor based in Melbourne's Eastern Suburbs with over 20 years of experience helping learner drivers build confidence and pass their driving test safely and efficiently. His calm, structured approach has helped thousands of students become safe, independent drivers.",
   },
   {
+    id: 'john-stevens',
+    initials: 'JS',
+    name: 'John Stevens',
+    title: 'Professional Driving Instructor',
+    location: 'Melbourne East',
+    transmission: 'Manual & Automatic',
+    experience: '12+ years',
+    fee: 'From $90–$120/hr',
+    availability: 'Weekdays / Weekends',
+    photo: 'john-stevens.jpg',
+    email: 'john@example.com',
+    phone: '0412 345 678',
+    bio: "John is a professional driving instructor based in Melbourne's east with over 12 years of experience helping learner drivers build confidence and pass their driving test safely and efficiently. His calm, structured approach has helped hundreds of students become safe, independent drivers.",
+  },
+  {
     id: 'lisa-wong',
     initials: 'LW',
     name: 'Lisa Wong',
@@ -134,7 +149,7 @@ function renderHome() {
     <section class="section why-section">
       <div class="container">
         <h2 class="section-title">Why Choose The Professional Driving Instructors Network?</h2>
-        <div class="why-grid">
+        <div class="why-grid reveal">
           <div class="why-card">
             <div class="icon-circle">${ICONS.shield}</div>
             <h3>Experienced Instructors</h3>
@@ -161,7 +176,7 @@ function renderHome() {
 
     <section class="section featured-section">
       <div class="container">
-        <h2 class="section-title">Featured Instructors</h2>
+        <h2 class="section-title reveal">Featured Instructors</h2>
         <div class="instructor-grid">
           ${INSTRUCTORS.map(i => instructorCardHTML(i)).join('')}
         </div>
@@ -180,7 +195,7 @@ function renderHome() {
     </section>
 
     <section class="cta-section">
-      <div class="container">
+      <div class="cta-content reveal">
         <h2>Are you a professional driving instructor?</h2>
         <button class="btn btn-gold btn-lg" data-action="nav" data-page="join">Join the Network</button>
       </div>
@@ -381,17 +396,11 @@ function navigate(page, extra, pushState = true) {
   app.innerHTML = getPageContent(page, extra);
   window.scrollTo({ top: 0, behavior: 'instant' });
 
-  // Update active nav link
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.classList.toggle('active',
-      link.dataset.page === page ||
-      (page === 'profile' && link.dataset.page === 'find')
-    );
-  });
+  // Update active links in both desktop and mobile nav
+  updateActiveLinks(page);
 
-  // Close mobile menu
-  document.getElementById('nav-links').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
+  // Close mobile dropdown
+  closeMenu();
 
   // Push to browser history so Back/Forward work
   if (pushState) {
@@ -401,6 +410,9 @@ function navigate(page, extra, pushState = true) {
   }
 
   bindPageEvents();
+
+  // Init scroll reveal for new page content
+  setTimeout(initReveal, 50);
 }
 
 function bindPageEvents() {
@@ -445,22 +457,88 @@ function bindPageEvents() {
 }
 
 /* =============================================
-   NAVBAR EVENTS
+   NAVBAR EVENTS  (desktop + mobile dropdown)
    ============================================= */
+function closeMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const dropdown  = document.getElementById('nav-dropdown');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  dropdown.classList.remove('open');
+}
+
 function bindNavEvents() {
-  document.querySelectorAll('.nav-link').forEach(link => {
+  const hamburger = document.getElementById('hamburger');
+  const dropdown  = document.getElementById('nav-dropdown');
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    const isOpen = dropdown.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      dropdown.classList.add('open');
+    }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.navbar') && !e.target.closest('#nav-dropdown')) {
+      closeMenu();
+    }
+  });
+
+  // Desktop nav links
+  document.querySelectorAll('#nav-links-desktop .nav-link').forEach(link => {
     link.addEventListener('click', e => { e.preventDefault(); navigate(link.dataset.page); });
   });
+
+  // Mobile dropdown nav links
+  document.querySelectorAll('#nav-dropdown .nav-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      closeMenu();
+      navigate(link.dataset.page);
+    });
+  });
+
+  // Logo
   document.querySelector('.nav-logo').addEventListener('click', e => { e.preventDefault(); navigate('home'); });
+
+  // Footer links
   document.querySelectorAll('.footer-links a').forEach(link => {
     link.addEventListener('click', e => { e.preventDefault(); navigate(link.dataset.page); });
   });
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('nav-links');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open');
+
+  // Navbar scroll shadow
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+}
+
+/* Update active nav link (both desktop and mobile) */
+function updateActiveLinks(page) {
+  const allLinks = document.querySelectorAll('#nav-links-desktop .nav-link, #nav-dropdown .nav-link');
+  allLinks.forEach(link => {
+    const isActive = link.dataset.page === page ||
+                     (page === 'profile' && link.dataset.page === 'find');
+    link.classList.toggle('active', isActive);
   });
+}
+
+/* =============================================
+   SCROLL-REVEAL OBSERVER
+   ============================================= */
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
 }
 
 /* =============================================
