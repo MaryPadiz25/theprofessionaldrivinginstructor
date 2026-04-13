@@ -20,8 +20,8 @@ const INSTRUCTORS = [
     ],
     availability: 'Weekdays',
     photo: 'rob-lester.jpg',
-    email: 'rob@example.com',
-    phone: '0415 678 901',
+    email: 'info@learn2drive.com.au',
+    phone: '0412 006 199',
     bio: "Rob is a professional driving instructor based in Melbourne's Eastern Suburbs with over 20 years of experience helping learner drivers build confidence and pass their driving test safely and efficiently. His calm, structured approach has helped thousands of students become safe, independent drivers.",
   },
   {
