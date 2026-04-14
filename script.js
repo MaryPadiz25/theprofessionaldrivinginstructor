@@ -19,10 +19,20 @@ const INSTRUCTORS = [
       { type: 'Manual', car: 'Toyota Corolla' },
     ],
     availability: 'Weekdays',
+    areasOfExpertise: [
+      'Nervous & Anxious Drivers',
+      'VicRoads Drive Test Preparation',
+      'Defensive Driving Techniques',
+      'Adult Learners & Late Starters',
+      'Overseas Licence Conversion',
+      'Confidence & Decision-Making Coaching',
+      'Manual Driving Instruction',
+      'Aviation-Inspired Driver Training',
+    ],
     photo: 'rob-lester.jpg',
     email: 'info@learn2drive.com.au',
     phone: '0412 006 199',
-    bio: "Rob is a professional driving instructor based in Melbourne's Eastern Suburbs with over 20 years of experience helping learner drivers build confidence and pass their driving test safely and efficiently. His calm, structured approach has helped thousands of students become safe, independent drivers.",
+    bio: "Rob is a professional driving instructor based in Melbourne's Eastern Suburbs with over 20 years of experience helping learner drivers build confidence and pass their driving tests safely and efficiently. He is also a qualified commercial pilot and flight instructor, bringing an aviation-based approach to training that focuses on calm decision-making, structure, and safety. His calm, structured approach helps students become safe, independent drivers.",
   },
   {
     id: 'john-stevens',
@@ -80,7 +90,7 @@ const ICONS = {
   phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 0 0 0 .82 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
   user:       `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
   pin:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-  car:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 4v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  car:        `<svg width="16" height="14" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h18v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z"/><path d="M3 13l2.5-5.5A2 2 0 017.3 6.5h9.4a2 2 0 011.8 1l2.5 5.5"/><path d="M8 6.5V5a1 1 0 011-1h6a1 1 0 011 1v1.5"/><circle cx="6.5" cy="16.5" r="2"/><circle cx="17.5" cy="16.5" r="2"/><line x1="8.5" y1="16.5" x2="15.5" y2="16.5"/></svg>`,
   clock:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   dollar:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
   users:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
@@ -112,18 +122,30 @@ function instructorCardHTML(inst) {
     ? `<img src="${inst.photo}" alt="${inst.name}" class="card-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="avatar-initials" style="display:none">${inst.initials}</div>`
     : `<div class="avatar-initials">${inst.initials}</div>`;
 
-  const vehicleRow = inst.customQS
-    ? inst.vehicles.map(v => `<div class="card-meta-row">${ICONS.car} ${v.type} — ${v.car}</div>`).join('')
-    : `<div class="card-meta-row">${ICONS.car} ${inst.transmission}</div>`;
+  // On the card Rob shows: location, Manual & Automatic, tagline, experience
+  // Other instructors show: location, transmission, experience
+  let metaRows = '';
+  if (inst.customQS) {
+    metaRows = `
+      <div class="card-meta-row">${ICONS.pin} ${inst.location}</div>
+      <div class="card-meta-row">${ICONS.car} Manual &amp; Automatic</div>
+      <div class="card-meta-row card-tagline">${ICONS.user} Patient and calm Instructor</div>
+      <div class="card-meta-row">${ICONS.clock} ${inst.experience}</div>
+    `;
+  } else {
+    metaRows = `
+      <div class="card-meta-row">${ICONS.pin} ${inst.location}</div>
+      <div class="card-meta-row">${ICONS.car} ${inst.transmission}</div>
+      <div class="card-meta-row">${ICONS.clock} ${inst.experience}</div>
+    `;
+  }
 
   return `
     <div class="card" data-action="profile" data-id="${inst.id}">
       <div class="card-photo-wrap">${photoEl}</div>
       <div class="card-body">
         <div class="card-name">${inst.name}</div>
-        <div class="card-meta-row">${ICONS.pin} ${inst.location}</div>
-        ${vehicleRow}
-        <div class="card-meta-row">${ICONS.clock} ${inst.experience}</div>
+        ${metaRows}
         <button class="btn btn-navy btn-full" data-action="profile" data-id="${inst.id}">View Profile</button>
       </div>
     </div>
@@ -226,13 +248,38 @@ function renderProfile(id) {
 
   let qsRows = '';
   if (inst.customQS) {
-    const feesHTML    = inst.lessonFees.map(f => `<div class="qs-item-value">${f.duration} — ${f.price}</div>`).join('');
+    // Rob: LEFT col = Experience + Areas of Expertise | RIGHT col = Vehicles + Availability + Lesson Fees
+    const expertiseHTML = inst.areasOfExpertise
+      ? inst.areasOfExpertise.map(a => `<li>${a}</li>`).join('')
+      : '';
+    const feesHTML     = inst.lessonFees.map(f => `<div class="qs-item-value">${f.duration} — ${f.price}</div>`).join('');
     const vehiclesHTML = inst.vehicles.map(v => `<div class="qs-item-value">${v.type} — ${v.car}</div>`).join('');
+
     qsRows = `
-      <div><div class="qs-item-label">Experience</div><div class="qs-item-value">${inst.experience}</div></div>
-      <div><div class="qs-item-label">Lesson Fees</div>${feesHTML}</div>
-      <div><div class="qs-item-label">Vehicles</div>${vehiclesHTML}</div>
-      <div><div class="qs-item-label">Availability</div><div class="qs-item-value">${inst.availability}</div></div>
+      <div class="qs-col-left">
+        <div class="qs-block">
+          <div class="qs-item-label">Experience</div>
+          <div class="qs-item-value">${inst.experience}</div>
+        </div>
+        <div class="qs-block">
+          <div class="qs-item-label">Areas of Expertise</div>
+          <ul class="qs-expertise-list">${expertiseHTML}</ul>
+        </div>
+      </div>
+      <div class="qs-col-right">
+        <div class="qs-block">
+          <div class="qs-item-label">Vehicles</div>
+          ${vehiclesHTML}
+        </div>
+        <div class="qs-block">
+          <div class="qs-item-label">Availability</div>
+          <div class="qs-item-value">${inst.availability}</div>
+        </div>
+        <div class="qs-block">
+          <div class="qs-item-label">Lesson Fees</div>
+          ${feesHTML}
+        </div>
+      </div>
     `;
   } else {
     qsRows = `
@@ -242,6 +289,8 @@ function renderProfile(id) {
       <div><div class="qs-item-label">Availability</div><div class="qs-item-value">${inst.availability}</div></div>
     `;
   }
+
+  const qsGridClass = inst.customQS ? 'qs-grid qs-grid-custom' : 'qs-grid';
 
   return `
     <div class="profile-hero">
@@ -255,8 +304,8 @@ function renderProfile(id) {
           </div>
         </div>
         <div class="quick-summary">
-          <div class="qs-title">Quick Summary</div>
-          <div class="qs-grid">${qsRows}</div>
+          <div class="qs-title">Instructor Profile</div>
+          <div class="${qsGridClass}">${qsRows}</div>
           <div class="qs-btns">
             <a href="tel:${inst.phone}" class="btn btn-navy">${ICONS.phoneSmall} Call Instructor</a>
             <a href="mailto:${inst.email}" class="btn btn-gold">${ICONS.mail} Send Enquiry</a>
