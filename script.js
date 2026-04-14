@@ -88,9 +88,9 @@ const ICONS = {
   shield:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
   document:   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
   phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 0 0 0 .82 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
-  user:       `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  user:       `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
   pin:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-  car:        `<svg width="16" height="14" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h18v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z"/><path d="M3 13l2.5-5.5A2 2 0 017.3 6.5h9.4a2 2 0 011.8 1l2.5 5.5"/><path d="M8 6.5V5a1 1 0 011-1h6a1 1 0 011 1v1.5"/><circle cx="6.5" cy="16.5" r="2"/><circle cx="17.5" cy="16.5" r="2"/><line x1="8.5" y1="16.5" x2="15.5" y2="16.5"/></svg>`,
+  car:        `<svg width="18" height="12" viewBox="0 0 36 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h32v3a1 1 0 01-1 1H3a1 1 0 01-1-1v-3z"/><path d="M2 11l4-6h22l4 6"/><path d="M8 5l2-3h14l2 3"/><rect x="10" y="5" width="8" height="4" rx="1"/><rect x="20" y="5" width="6" height="4" rx="1"/><circle cx="8" cy="14.5" r="2.5"/><circle cx="28" cy="14.5" r="2.5"/><line x1="10.5" y1="14.5" x2="25.5" y2="14.5"/><line x1="2" y1="11" x2="34" y2="11"/></svg>`,
   clock:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   dollar:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
   users:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
@@ -155,6 +155,156 @@ function instructorCardHTML(inst) {
 /* =============================================
    PAGES
    ============================================= */
+/* =============================================
+   ENQUIRY MODAL
+   ============================================= */
+function enquiryModalHTML(inst) {
+  return `
+  <div class="enquiry-overlay" id="enquiry-overlay" role="dialog" aria-modal="true" aria-label="Send Enquiry">
+    <div class="enquiry-modal" id="enquiry-modal">
+      <button class="enquiry-close" id="enquiry-close" aria-label="Close">&times;</button>
+      <div class="enquiry-header">
+        <div class="enquiry-title">Send Enquiry</div>
+        <div class="enquiry-subtitle">Please provide a few details so the instructor can respond accurately.</div>
+      </div>
+      <div id="enquiry-form-body">
+        <div class="enquiry-section-label">Your Details</div>
+        <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input type="text" class="form-input" id="eq-name" placeholder="Your full name" /></div>
+        <div class="form-group"><label class="form-label">Mobile Number <span>*</span></label><input type="tel" class="form-input" id="eq-mobile" placeholder="e.g. 0400 123 456" /></div>
+        <div class="form-group"><label class="form-label">Email Address <span>*</span></label><input type="email" class="form-input" id="eq-email" placeholder="your@email.com" /></div>
+
+        <div class="enquiry-section-label">Lesson Details</div>
+        <div class="form-group"><label class="form-label">Suburb / Area <span>*</span></label><input type="text" class="form-input" id="eq-suburb" placeholder="e.g. Box Hill" /></div>
+        <div class="form-group">
+          <label class="form-label">Licence Stage <span>*</span></label>
+          <select class="form-input" id="eq-licence">
+            <option value="" disabled selected>Select licence stage…</option>
+            <option>Learner (new)</option>
+            <option>Learner (some experience)</option>
+            <option>Preparing for Drive Test</option>
+            <option>Overseas Licence Conversion</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Transmission Preference <span>*</span></label>
+          <select class="form-input" id="eq-transmission">
+            <option value="" disabled selected>Select preference…</option>
+            <option>Auto</option>
+            <option>Manual</option>
+            <option>No Preference</option>
+          </select>
+        </div>
+
+        <div class="enquiry-section-label">Availability</div>
+        <div class="form-group">
+          <label class="form-label">Preferred Days</label>
+          <div class="eq-checkboxes">
+            <label class="eq-check"><input type="checkbox" value="Weekdays" /> Weekdays</label>
+            <label class="eq-check"><input type="checkbox" value="Weekends" /> Weekends</label>
+            <label class="eq-check"><input type="checkbox" value="Evenings" /> Evenings</label>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Preferred Start Time <span class="form-label-optional">(optional)</span></label><input type="text" class="form-input" id="eq-starttime" placeholder="e.g. mornings / afternoons / flexible" /></div>
+
+        <div class="enquiry-section-label">Message</div>
+        <div class="form-group"><label class="form-label">Additional Information <span class="form-label-optional">(optional but encouraged)</span></label><textarea class="form-input" id="eq-message" placeholder="e.g. Test booked, nervous driver, looking for weekly lessons, etc."></textarea></div>
+
+        <button class="btn btn-gold btn-full btn-lg" id="eq-submit">${ICONS.mail} Send Enquiry</button>
+        <p class="eq-note">For urgent bookings, we recommend calling the instructor directly.</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+function openEnquiryModal(inst) {
+  // Remove any existing modal
+  const existing = document.getElementById('enquiry-overlay');
+  if (existing) existing.remove();
+
+  document.body.insertAdjacentHTML('beforeend', enquiryModalHTML(inst));
+  document.body.classList.add('modal-open');
+
+  const overlay = document.getElementById('enquiry-overlay');
+  const closeBtn = document.getElementById('enquiry-close');
+
+  // Animate in
+  requestAnimationFrame(() => overlay.classList.add('visible'));
+
+  function closeModal() {
+    overlay.classList.remove('visible');
+    setTimeout(() => { overlay.remove(); document.body.classList.remove('modal-open'); }, 260);
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function onEsc(e) {
+    if (e.key === 'Escape') { closeModal(); document.removeEventListener('keydown', onEsc); }
+  });
+
+  document.getElementById('eq-submit').addEventListener('click', () => {
+    const name         = document.getElementById('eq-name').value.trim();
+    const mobile       = document.getElementById('eq-mobile').value.trim();
+    const email        = document.getElementById('eq-email').value.trim();
+    const suburb       = document.getElementById('eq-suburb').value.trim();
+    const licence      = document.getElementById('eq-licence').value;
+    const transmission = document.getElementById('eq-transmission').value;
+    const starttime    = document.getElementById('eq-starttime').value.trim();
+    const message      = document.getElementById('eq-message').value.trim();
+
+    const days = [...document.querySelectorAll('.eq-checkboxes input:checked')].map(c => c.value);
+
+    if (!name || !mobile || !email || !suburb || !licence || !transmission) {
+      alert('Please fill in all required fields marked with *');
+      return;
+    }
+
+    const daysText = days.length ? days.map(d => `- ${d}`).join('\n') : '- Not specified';
+    const subject  = encodeURIComponent(`New Enquiry from ${name} – Professional Driving Instructors Network`);
+    const body     = encodeURIComponent(
+`You have received a new enquiry via the Professional Driving Instructors Network.
+
+--------------------------------------
+STUDENT DETAILS
+Name:   ${name}
+Mobile: ${mobile}
+Email:  ${email}
+
+--------------------------------------
+LESSON DETAILS
+Suburb:          ${suburb}
+Licence Stage:   ${licence}
+Transmission:    ${transmission}
+
+Availability:
+${daysText}
+
+Preferred Start Time: ${starttime || 'Not specified'}
+
+--------------------------------------
+MESSAGE
+${message || '(No additional message provided)'}
+
+--------------------------------------
+You can reply directly to this email to respond to the student.
+
+For best results, aim to respond within 24 hours.
+
+--
+This enquiry was sent via your profile on the Professional Driving Instructors Network.`
+    );
+
+    window.location.href = `mailto:${inst.email}?subject=${subject}&body=${body}`;
+
+    document.getElementById('enquiry-form-body').innerHTML = `
+      <div class="success-box">
+        <div class="success-icon">${ICONS.check}</div>
+        <h3>Enquiry Ready!</h3>
+        <p>Your email client will open with all your details pre-filled. Just hit Send to reach ${inst.name}.</p>
+        <p style="margin-top:12px;font-size:13.5px;color:var(--text-light)">If your email client didn't open, please email <strong>${inst.email}</strong> directly.</p>
+      </div>`;
+  });
+}
+
 function renderHome() {
   return `
     <section class="hero">
@@ -170,7 +320,7 @@ function renderHome() {
 
     <section class="section why-section">
       <div class="container">
-        <h2 class="section-title">Why Choose The Professional Driving Instructors Network?</h2>
+        <h2 class="section-title">Why Choose the Professional Driving Instructors Network?</h2>
         <div class="why-grid reveal">
           <div class="why-card">
             <div class="icon-circle">${ICONS.shield}</div>
@@ -308,7 +458,7 @@ function renderProfile(id) {
           <div class="${qsGridClass}">${qsRows}</div>
           <div class="qs-btns">
             <a href="tel:${inst.phone}" class="btn btn-navy">${ICONS.phoneSmall} Call Instructor</a>
-            <a href="mailto:${inst.email}" class="btn btn-gold">${ICONS.mail} Send Enquiry</a>
+            <button class="btn btn-gold" id="open-enquiry-btn" data-instructor-id="${inst.id}">${ICONS.mail} Send Enquiry</button>
           </div>
         </div>
       </div>
@@ -385,7 +535,7 @@ function renderPricing() {
         <h2>Independent Instructor Pricing</h2>
         <p>All instructors on this platform are independent professionals. They set their own pricing, reflecting their experience and expertise.</p>
         <p>Typical lesson pricing across the network generally falls within:</p>
-        <div class="price-highlight">$90 – $135 per hour <span>(guide only)</span></div>
+        <div class="price-highlight">$85 – $135 per hour <span>(guide only)</span></div>
         <p>Some instructors may charge more or less depending on experience level, vehicle type, lesson type, and location.</p>
         <hr class="pricing-divider" />
         <h2>No Commission Model</h2>
@@ -472,6 +622,16 @@ function bindPageEvents() {
   document.querySelectorAll('[data-action="profile"]').forEach(el => {
     el.addEventListener('click', e => { e.preventDefault(); navigate('profile', el.dataset.id); });
   });
+
+  // Enquiry modal trigger
+  const enquiryBtn = document.getElementById('open-enquiry-btn');
+  if (enquiryBtn) {
+    enquiryBtn.addEventListener('click', () => {
+      const id = enquiryBtn.dataset.instructorId;
+      const inst = INSTRUCTORS.find(i => i.id === id) || INSTRUCTORS[0];
+      openEnquiryModal(inst);
+    });
+  }
 
   const joinSubmit = document.getElementById('join-submit');
   if (joinSubmit) {
