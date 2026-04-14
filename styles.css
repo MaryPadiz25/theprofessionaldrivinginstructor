@@ -1000,3 +1000,79 @@ textarea:focus-visible {
 .join-benefits .benefit-card:nth-child(2) { animation-delay: 0.10s; }
 .join-benefits .benefit-card:nth-child(3) { animation-delay: 0.16s; }
 .join-benefits .benefit-card:nth-child(4) { animation-delay: 0.22s; }
+/* =============================================
+   ROB LESTER — CUSTOM INSTRUCTOR PROFILE
+   ============================================= */
+
+/* Two-column custom QS grid (Rob only) */
+.qs-grid-custom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 26px;
+}
+.qs-col-left,
+.qs-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 12px 0 0;
+}
+.qs-col-right { padding: 0 0 0 20px; border-left: 1px solid var(--border); }
+
+.qs-block { display: flex; flex-direction: column; gap: 4px; }
+.qs-block .qs-item-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--mid-gray);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.qs-block .qs-item-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+/* Areas of Expertise bullet list */
+.qs-expertise-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.qs-expertise-list li {
+  font-size: 13.5px;
+  color: var(--text-body);
+  line-height: 1.45;
+  padding-left: 16px;
+  position: relative;
+}
+.qs-expertise-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--navy);
+  flex-shrink: 0;
+}
+
+/* Card tagline row (Patient and calm Instructor) */
+.card-tagline {
+  font-style: italic;
+  color: var(--text-light) !important;
+}
+.card-tagline svg { color: var(--mid-gray) !important; }
+
+/* Mobile — stack custom QS columns */
+@media (max-width: 600px) {
+  .qs-grid-custom { grid-template-columns: 1fr; }
+  .qs-col-right { padding: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 18px; }
+}
