@@ -16,7 +16,7 @@ const CONTACT = {
   'john-stevens': {
     p: [48,52,49,50,32,51,52,53,32,54,55,56],
     e: [109,97,114,121,106,111,121,46,112,97,100,105,122,49,64,103,109,97,105,108,46,99,111,109],
-    svc: 'service_4kd3c2x', tpl: 'template_v9nyycm',
+    svc: 'maryjoy.padiz1@gmail.com', tpl: 'template_v9nyycm',
     unavailable: false
   },
   'lisa-wong': {
@@ -28,7 +28,7 @@ const CONTACT = {
   'mark-harris': {
     p: [48,52,49,52,32,53,54,55,32,56,57,48],
     e: [109,97,114,121,106,111,121,46,112,97,100,105,122,64,111,117,116,108,111,111,107,46,99,111,109],
-    svc: 'service_4kd3c2x', tpl: 'template_v9nyycm',
+    svc: 'maryjoy.padiz@outlook.com', tpl: 'template_v9nyycm',
     unavailable: false
   },
 };
