@@ -9,14 +9,14 @@ function dec(arr) { return arr.map(c => String.fromCharCode(c)).join(''); }
 const CONTACT = {
   'rob-lester':  {
     p: [48,52,49,50,32,48,48,54,32,49,57,57],
-    e: [105,110,102,111,64,108,101,97,114,110,50,100,114,105,118,101,46,99,111,109,46,97,117],
-    svc: 'service_qmll1g9', tpl: 'template_v9nyycm',  
+    e: [114,111,98,101,114,116,95,115,97,109,115,117,110,103,64,104,111,116,109,97,105,108,46,99,111,109],
+    svc: 'service_qmll1g9', tpl: 'template_v9nyycm',
     unavailable: false
   },
   'john-stevens': {
     p: [48,52,49,50,32,51,52,53,32,54,55,56],
     e: [109,97,114,121,106,111,121,46,112,97,100,105,122,49,64,103,109,97,105,108,46,99,111,109],
-    svc: 'maryjoy.padiz1@gmail.com', tpl: '',
+    svc: 'maryjoy.padiz1@gmail.com', tpl: 'template_v9nyycm',
     unavailable: false
   },
   'lisa-wong': {
@@ -162,7 +162,7 @@ const ICONS = {
   phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 0 0 0 .82 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
   user:       `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
   pin:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-  car:        `<svg width="22" height="14" viewBox="0 0 42 21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 17L2 15.5C1.2 15.2 1 14.6 1 13.8L1 12C1 11.2 1.5 10.5 2.3 10.2L5.5 9.2L9 5C9.8 4.1 11 3.5 12.3 3.5L29.5 3.5C31 3.5 32.4 4.3 33.2 5.6L36.5 10L38.8 10.5C40 10.9 41 12 41 13.3L41 15.5C41 16.3 40.4 17 39.5 17L38.5 17"/><path d="M30 17L14 17"/><path d="M6 17L2 17"/><path d="M11 9.5L13.5 5.2L28 5.2L32 9.5Z" stroke-width="1"/><line x1="21" y1="5.2" x2="21" y2="9.5" stroke-width="0.9"/><circle cx="10" cy="17" r="3" stroke-width="1.3"/><circle cx="10" cy="17" r="1.2" stroke-width="0.8"/><circle cx="34" cy="17" r="3" stroke-width="1.3"/><circle cx="34" cy="17" r="1.2" stroke-width="0.8"/></svg>`,
+  car:        `<svg width="20" height="12" viewBox="0 0 50 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14 C5 14 9 7 15 6 L25 5 C31 5 35 5 38 6.5 L44 10 C46 11 47 13 47 15"/><line x1="3" y1="14" x2="47" y2="14"/><line x1="3" y1="14" x2="3" y2="16"/><line x1="47" y1="14" x2="47" y2="16"/><circle cx="11" cy="17" r="3"/><circle cx="39" cy="17" r="3"/><line x1="14" y1="17" x2="36" y2="17"/><path d="M15 6 L17 11 L33 11 L31 6"/><line x1="24" y1="6" x2="24" y2="11"/></svg>`,
   clock:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   dollar:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
   users:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
