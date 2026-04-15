@@ -10,8 +10,8 @@ const CONTACT = {
   'rob-lester':  {
     p: [48,52,49,50,32,48,48,54,32,49,57,57],
     e: [105,110,102,111,64,108,101,97,114,110,50,100,114,105,118,101,46,99,111,109,46,97,117],
-    svc: null, tpl: null,   // EmailJS not yet configured — enquiry button hidden
-    unavailable: true
+    svc: 'service_qmll1g9', tpl: 'template_v9nyycm',  
+    unavailable: false
   },
   'john-stevens': {
     p: [48,52,49,50,32,51,52,53,32,54,55,56],
