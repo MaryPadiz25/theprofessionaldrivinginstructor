@@ -886,11 +886,13 @@ function bindPageEvents() {
       const tFee   = document.getElementById('join-travel-fee')?.checked   || false;
 
       setButtonLoading('join-submit', true, 'Apply to Join');
-      fetch('https://formspree.io/f/xnjlqawn', {
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          _subject: 'New Instructor Application — ' + name,
+          access_key: 'd7c943d4-eb3e-4af9-8aa8-2ce901e063e2',
+          subject: 'New Instructor Application — ' + name,
+          from_name: 'Professional Driving Instructors Network',
           form_type: 'Join the Network', Name: name, Email: email, Phone: phone,
           Primary_Suburb: suburb, Travel_Radius_km: radius + ' km',
           Travel_Bonus_Longer_Lessons: tBonus ? 'Yes' : 'No',
@@ -899,8 +901,9 @@ function bindPageEvents() {
           Requirements_Confirmed: 'Yes — all requirements confirmed', About: bio
         })
       })
-      .then(res => {
-        if (res.ok) {
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
           document.getElementById('join-form-box').innerHTML = `
             <div class="success-box">
               <div class="success-icon">${ICONS.check}</div>
@@ -917,16 +920,43 @@ function bindPageEvents() {
   const contactSubmit = document.getElementById('contact-submit');
   if (contactSubmit) {
     contactSubmit.addEventListener('click', () => {
-      const name = document.getElementById('c-name').value.trim();
-      const email = document.getElementById('c-email').value.trim();
-      const msg   = document.getElementById('c-message').value.trim();
-      if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
-      document.getElementById('contact-form-wrap').innerHTML = `
-        <div class="success-box">
-          <div class="success-icon">${ICONS.check}</div>
-          <h3>Message Sent!</h3>
-          <p>Thanks ${name}, we've received your message and will get back to you shortly.</p>
-        </div>`;
+      const name    = document.getElementById('c-name').value.trim();
+      const email   = document.getElementById('c-email').value.trim();
+      const subject = (document.getElementById('c-subject')?.value || '').trim();
+      const msg     = document.getElementById('c-message').value.trim();
+      if (!name || !email || !msg) {
+        showFormError('contact-form-wrap', 'Please fill in your name, email, and message.');
+        return;
+      }
+      setButtonLoading('contact-submit', true, 'Send Message');
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'b9dcce58-e3f6-444a-b788-e5424d3edf9d',
+          subject: subject || 'New Contact Form Message — ' + name,
+          from_name: 'Professional Driving Instructors Network',
+          Name: name, Email: email, Subject: subject || '(none)', Message: msg
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById('contact-form-wrap').innerHTML = `
+            <div class="success-box">
+              <div class="success-icon">${ICONS.check}</div>
+              <h3>Message Sent!</h3>
+              <p>Thanks ${name}, we've received your message and will get back to you shortly.</p>
+            </div>`;
+        } else {
+          showFormError('contact-form-wrap', 'Submission failed. Please try again.');
+          setButtonLoading('contact-submit', false, 'Send Message');
+        }
+      })
+      .catch(() => {
+        showFormError('contact-form-wrap', 'Network error. Please try again.');
+        setButtonLoading('contact-submit', false, 'Send Message');
+      });
     });
   }
 }
