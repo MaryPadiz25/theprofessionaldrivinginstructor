@@ -1639,3 +1639,90 @@ button:disabled { opacity: 0.7; cursor: not-allowed !important; transform: none 
   .qs-grid-custom { grid-template-columns: 1fr; }
   .qs-col-right { padding: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 18px; }
 }
+/* =============================================
+   SENIOR BADGE (10+ years premium indicator)
+   ============================================= */
+.senior-badge {
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 6px;
+  vertical-align: middle;
+  line-height: 1;
+  cursor: default;
+}
+.card-name .senior-badge { font-size: 13px; }
+.profile-name .senior-badge { font-size: 18px; margin-left: 8px; }
+
+/* =============================================
+   FORM HINT TEXT
+   ============================================= */
+.form-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+.expertise-count-hint {
+  font-size: 12.5px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* =============================================
+   AVAILABILITY & EXPERTISE GRID
+   ============================================= */
+.join-avail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.join-expertise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .join-avail-grid { grid-template-columns: 1fr; }
+  .join-expertise-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================
+   APPROVAL NOTICE (join form)
+   ============================================= */
+.join-approval-notice {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--navy);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 20px 0 8px;
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.join-approval-notice p { margin-bottom: 8px; }
+.join-approval-notice p:last-child { margin-bottom: 0; }
+.join-approval-notice a { color: var(--navy); font-weight: 600; }
+
+/* =============================================
+   USER ICON IN WHY-CARDS — match other icon sizes
+   ============================================= */
+.why-card .icon-circle svg { width: 24px; height: 24px; }
+
+/* =============================================
+   FORM SECTION HEAD (service area heading style)
+   ============================================= */
+.form-section-head {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 28px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* =============================================
+   CAR ICON — consistent sizing on cards & profile
+   ============================================= */
+.card-meta-row svg[viewBox="0 0 42 22"] { vertical-align: middle; }
