@@ -11,25 +11,29 @@ const CONTACT = {
     p: [48,52,49,50,32,48,48,54,32,49,57,57],
     e: [114,111,98,101,114,116,95,115,97,109,115,117,110,103,64,104,111,116,109,97,105,108,46,99,111,109],
     svc: 'service_qmll1g9', tpl: 'template_v9nyycm',
+    w3f: '2c2335a7-edb1-4673-b7d7-6971217f4d96',
     unavailable: false
   },
   'john-stevens': {
     p: [48,52,49,50,32,51,52,53,32,54,55,56],
     e: [109,97,114,121,106,111,121,46,112,97,100,105,122,49,64,103,109,97,105,108,46,99,111,109],
     svc: 'maryjoy.padiz1@gmail.com', tpl: 'template_v9nyycm',
+    w3f: '1119cfb7-b03e-4f5d-ae4f-b8e3a077bac7',
     unavailable: false
   },
   'lisa-wong': {
     p: [48,52,49,51,32,52,53,54,32,55,56,57],
     e: [109,97,114,105,97,102,114,101,121,112,97,100,105,122,64,103,109,97,105,108,46,99,111,109],
     svc: null, tpl: null,   // EmailJS not yet configured — enquiry button hidden
-    unavailable: true
+    unavailable: true,
+    joinUnavailable: true
   },
   'mark-harris': {
     p: [48,52,49,52,32,53,54,55,32,56,57,48],
     e: [109,97,114,121,106,111,121,46,112,97,100,105,122,64,111,117,116,108,111,111,107,46,99,111,109],
     svc: 'mariafreypadiz@gmail.com', tpl: 'template_vpug1fw',
-    unavailable: false
+    unavailable: false,
+    joinUnavailable: true
   },
 };
 
@@ -70,6 +74,7 @@ const INSTRUCTORS = [
       'Manual Driving Instruction',
       'Aviation-Inspired Driver Training',
     ],
+    seniorBadge: true,
     photo: 'rob-lester.jpg',
     bio: "Rob is a professional driving instructor based in Melbourne's Eastern Suburbs with over 20 years of experience helping learner drivers build confidence and pass their driving tests safely and efficiently. He is also a qualified commercial pilot and flight instructor, bringing an aviation-based approach to training that focuses on calm decision-making, structure, and safety. His calm, structured approach helps students become safe, independent drivers.",
   },
@@ -88,6 +93,7 @@ const INSTRUCTORS = [
     experience: '12+ years',
     fee: 'From $90–$120/hr',
     availability: 'Weekdays / Weekends',
+    seniorBadge: true,
     photo: 'john-stevens.jpg',
     bio: "John is a professional driving instructor based in Melbourne's east with over 12 years of experience helping learner drivers build confidence and pass their driving test safely and efficiently. His calm, structured approach has helped hundreds of students become safe, independent drivers.",
   },
@@ -106,6 +112,7 @@ const INSTRUCTORS = [
     experience: '8+ years',
     fee: 'From $95–$115/hr',
     availability: 'Weekdays / Saturdays',
+    seniorBadge: false,
     photo: 'lisa-wong.jpg',
     bio: "Lisa is an experienced automatic driving instructor operating in Melbourne's CBD and inner suburbs. With 8 years of experience, she specialises in building confidence in busy urban environments, helping students master parallel parking, roundabouts, and city traffic with ease.",
   },
@@ -124,6 +131,7 @@ const INSTRUCTORS = [
     experience: '15+ years',
     fee: 'From $95–$125/hr',
     availability: 'Weekdays / Weekends',
+    seniorBadge: true,
     photo: 'mark-harris.jpg',
     bio: "Mark brings over 15 years of driving instruction experience to Melbourne's western suburbs. Known for his patient, structured teaching style, Mark has helped learners of all ages — from nervous first-timers to experienced drivers seeking to improve — become safe, confident road users.",
   }
@@ -159,10 +167,10 @@ function haversineKm(lat1, lng1, lat2, lng2) {
 const ICONS = {
   shield:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
   document:   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
-  phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 0 0 0 .82 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
-  user:       `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>`,
+  user:       `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
   pin:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-  car:        `<svg width="20" height="12" viewBox="0 0 50 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14 C5 14 9 7 15 6 L25 5 C31 5 35 5 38 6.5 L44 10 C46 11 47 13 47 15"/><line x1="3" y1="14" x2="47" y2="14"/><line x1="3" y1="14" x2="3" y2="16"/><line x1="47" y1="14" x2="47" y2="16"/><circle cx="11" cy="17" r="3"/><circle cx="39" cy="17" r="3"/><line x1="14" y1="17" x2="36" y2="17"/><path d="M15 6 L17 11 L33 11 L31 6"/><line x1="24" y1="6" x2="24" y2="11"/></svg>`,
+  car:        `<svg width="22" height="14" viewBox="0 0 42 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 C2 14 5 8 10 7 L20 6 C26 6 30 6 33 7.5 L39 11 C40 12.5 41 14 41 15" /><line x1="2" y1="15" x2="41" y2="15" /><circle cx="9" cy="18" r="3.5" /><circle cx="33" cy="18" r="3.5" /><line x1="12.5" y1="18" x2="29.5" y2="18" /></svg>`,
   clock:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   dollar:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
   users:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
@@ -247,7 +255,7 @@ function instructorCardHTML(inst, distKm) {
     <div class="card" data-action="profile" data-id="${inst.id}">
       <div class="card-photo-wrap">${photoEl}${badge}</div>
       <div class="card-body">
-        <div class="card-name">${inst.name}</div>
+        <div class="card-name">${inst.name}${inst.seniorBadge ? '<span class="senior-badge" title="10+ Years Experience">⭐</span>' : ''}</div>
         ${metaRows}
         <button class="btn btn-navy btn-full" data-action="profile" data-id="${inst.id}">View Profile</button>
       </div>
@@ -281,7 +289,7 @@ function renderHome() {
       <div class="container">
         <h2 class="section-title">Why Choose the Professional Driving Instructors Network?</h2>
         <div class="why-grid reveal">
-          <div class="why-card"><div class="icon-circle">${ICONS.shield}</div><h3>Experienced Instructors</h3><p>Professionals with years of experience helping learners succeed</p></div>
+          <div class="why-card"><div class="icon-circle">${ICONS.shield}</div><h3>Experienced Instructors</h3><p>Qualified professionals focused on helping learners succeed.</p></div>
           <div class="why-card"><div class="icon-circle">${ICONS.document}</div><h3>No Commission Platforms</h3><p>Instructors keep 100% of their lesson fees</p></div>
           <div class="why-card"><div class="icon-circle">${ICONS.phone}</div><h3>Direct Contact</h3><p>Connect directly with your instructor — no middleman</p></div>
           <div class="why-card"><div class="icon-circle">${ICONS.user}</div><h3>Professional Standards</h3><p>Quality-focused instructors who take pride in their work</p></div>
@@ -392,7 +400,7 @@ function renderProfile(id) {
         <div class="profile-avatar-wrap">
           ${avatarEl}
           <div>
-            <div class="profile-name">${inst.name}</div>
+            <div class="profile-name">${inst.name}${inst.seniorBadge ? '<span class="senior-badge" title="10+ Years Experience — Premium Badge">⭐</span>' : ''}</div>
             <div class="profile-title">${inst.title}</div>
             <div class="profile-location">${ICONS.pin} ${inst.location}</div>
           </div>
@@ -439,29 +447,116 @@ function renderJoin() {
       <div class="apply-form-box" id="join-form-box">
         <div class="apply-form-title">Apply to Join</div>
 
-        <!-- Profile Photo Upload -->
-        <div class="form-group">
-          <label class="form-label">Profile Photo</label>
-          <div class="photo-upload-area" id="photo-upload-area">
-            <div class="photo-upload-preview" id="photo-preview-wrap">
-              <div class="photo-upload-placeholder" id="photo-placeholder">
-                ${ICONS.upload}
-                <span>Click or drag &amp; drop to upload</span>
-                <span class="photo-upload-hint">JPG or PNG, max 5 MB</span>
-              </div>
-              <img id="photo-preview-img" class="photo-preview-img" style="display:none" alt="Preview" />
-            </div>
-            <input type="file" id="join-photo" accept="image/jpeg,image/png" style="display:none" />
-            <button type="button" class="btn-outline-upload" id="photo-upload-btn">Choose Photo</button>
-          </div>
-        </div>
+
 
         <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input type="text" class="form-input" placeholder="Your full name" id="join-name" /></div>
         <div class="form-group"><label class="form-label">Email <span>*</span></label><input type="email" class="form-input" placeholder="your@email.com" id="join-email" /></div>
         <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="0412 345 678" id="join-phone" /></div>
-        <div class="form-group"><label class="form-label">Years of Experience</label><input type="text" class="form-input" placeholder="e.g. 10+" id="join-exp" /></div>
-        <div class="form-group"><label class="form-label">DIA Number <span>*</span></label><input type="text" class="form-input" placeholder="Your Driving Instructor Authority number" id="join-dia" /></div>
+        <div class="form-group">
+          <label class="form-label">Year you started working as a driving instructor <span>*</span></label>
+          <select class="form-input" id="join-exp">
+            <option value="" disabled selected>Select year…</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+            <option value="1999">1999</option>
+            <option value="1998">1998</option>
+            <option value="1997">1997</option>
+            <option value="1996">1996</option>
+            <option value="1995">1995</option>
+            <option value="1994">1994</option>
+            <option value="1993">1993</option>
+            <option value="1992">1992</option>
+            <option value="1991">1991</option>
+            <option value="1990">1990</option>
+            <option value="1989">1989</option>
+            <option value="1988">1988</option>
+            <option value="1987">1987</option>
+            <option value="1986">1986</option>
+            <option value="1985">1985</option>
+            <option value="1984">1984</option>
+            <option value="1983">1983</option>
+            <option value="1982">1982</option>
+            <option value="1981">1981</option>
+            <option value="1980">1980</option>
+            <option value="1979">1979</option>
+            <option value="1978">1978</option>
+            <option value="1977">1977</option>
+            <option value="1976">1976</option>
+            <option value="1975">1975</option>
+            <option value="1974">1974</option>
+            <option value="1973">1973</option>
+            <option value="1972">1972</option>
+            <option value="1971">1971</option>
+            <option value="1970">1970</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">DIA Number <span>*</span></label><input type="text" class="form-input" placeholder="Your Driving Instructor Authority number" id="join-dia" /><small class="form-hint">For verification purposes. This will not be displayed publicly.</small></div>
         <div class="form-group"><label class="form-label">Tell us about yourself</label><textarea class="form-input" placeholder="Brief overview of your experience and teaching style" id="join-bio"></textarea></div>
+
+        <!-- Vehicle Details -->
+        <div class="form-section-head">Vehicles</div>
+        <div class="form-group">
+          <label class="form-label">Automatic Vehicle</label>
+          <input type="text" class="form-input" placeholder="Vehicle make &amp; model (if applicable)" id="join-vehicle-auto" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Manual Vehicle</label>
+          <input type="text" class="form-input" placeholder="Vehicle make &amp; model (if applicable)" id="join-vehicle-manual" />
+        </div>
+
+        <!-- Availability -->
+        <div class="form-section-head">Availability</div>
+        <div class="form-group">
+          <div class="join-avail-grid">
+            <label class="join-toggle-label"><input type="checkbox" id="avail-weekdays" value="Weekdays" /><span>Weekdays</span></label>
+            <label class="join-toggle-label"><input type="checkbox" id="avail-weekends" value="Weekends" /><span>Weekends</span></label>
+            <label class="join-toggle-label"><input type="checkbox" id="avail-evenings" value="Evenings" /><span>Evenings</span></label>
+            <label class="join-toggle-label"><input type="checkbox" id="avail-early" value="Early Mornings" /><span>Early Mornings</span></label>
+          </div>
+        </div>
+
+        <!-- Areas of Expertise -->
+        <div class="form-section-head">Areas of Expertise <span style="font-size:12px;font-weight:400;color:var(--text-light)">(choose 3–5)</span></div>
+        <div class="form-group">
+          <div class="join-expertise-grid" id="join-expertise-grid">
+            <label class="join-toggle-label"><input type="checkbox" value="Nervous &amp; Confidence Building Drivers" /><span>Nervous &amp; Confidence Building Drivers</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="VicRoads Test Preparation" /><span>VicRoads Test Preparation</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Defensive Driving Techniques" /><span>Defensive Driving Techniques</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Adult Learners &amp; Late Starters" /><span>Adult Learners &amp; Late Starters</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Overseas Licence Conversion" /><span>Overseas Licence Conversion</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Manual Driving Instruction" /><span>Manual Driving Instruction</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Advanced Road Confidence &amp; Decision Making" /><span>Advanced Road Confidence &amp; Decision Making</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Highway &amp; Long Distance Driving" /><span>Highway &amp; Long Distance Driving</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="Refresher Lessons (returning drivers)" /><span>Refresher Lessons (returning drivers)</span></label>
+            <label class="join-toggle-label"><input type="checkbox" value="NDIS &amp; Supported Driving Instruction" /><span>NDIS &amp; Supported Driving Instruction</span></label>
+          </div>
+          <small class="form-hint expertise-count-hint" id="expertise-count-hint"></small>
+        </div>
 
         <!-- Service Area -->
         <div class="form-section-head">Where do you provide lessons?</div>
@@ -472,22 +567,13 @@ function renderJoin() {
         <div class="form-group">
           <label class="form-label">How far are you willing to travel?</label>
           <select class="form-input" id="join-radius">
-            <option value="5">5 km — Local only</option>
-            <option value="10" selected>10 km — Standard</option>
-            <option value="15">15 km — Extended</option>
-            <option value="20">20 km — Wide coverage</option>
+            <option value="10" selected>10 km</option>
+            <option value="15">15 km</option>
+            <option value="20">20 km</option>
+            <option value="30">30 km</option>
           </select>
         </div>
-        <div class="form-group join-toggle-group">
-          <label class="join-toggle-label">
-            <input type="checkbox" id="join-travel-bonus" />
-            <span>I'm willing to travel further for 90-minute lessons (+5–8 km extra)</span>
-          </label>
-          <label class="join-toggle-label">
-            <input type="checkbox" id="join-travel-fee" />
-            <span>I may charge a travel fee for outer areas</span>
-          </label>
-        </div>
+
 
         <!-- Instructor Requirements -->
         <div class="form-group join-requirements-group">
@@ -496,13 +582,24 @@ function renderJoin() {
           <div class="join-req-box">
             <div class="join-req-section-head">Licensing &amp; Compliance</div>
             <ul class="join-req-list">
-              <li>Current Driving Instructor Authority (VicRoads or relevant authority)</li>
+              <li>Current Driving Instructor Authority (DIA)</li>
               <li>Valid Working With Children Check (WWCC)</li>
             </ul>
             <div class="join-req-section-head">Vehicle Standards</div>
-            <ul class="join-req-list"><li>Fully registered, roadworthy vehicle suitable for driving instruction</li></ul>
+            <ul class="join-req-list">
+              <li>Fully registered and roadworthy vehicle suitable for professional driving instruction</li>
+              <li>Dual-controlled vehicle fitted and operational</li>
+              <li>Clean, safe, and presentable condition suitable for learner drivers</li>
+            </ul>
             <div class="join-req-section-head">Insurance</div>
-            <ul class="join-req-list"><li>Comprehensive motor vehicle insurance that covers the use of the vehicle for paid professional driving instruction</li></ul>
+            <ul class="join-req-list">
+              <li>Comprehensive motor vehicle insurance covering use of the vehicle for paid driving instruction</li>
+            </ul>
+            <div class="join-req-section-head">Professional Standards</div>
+            <ul class="join-req-list">
+              <li>Maintain safe, professional, and student-focused instruction standards consistent with industry expectations</li>
+              <li>Have appropriate professional driving instruction experience and competency to deliver safe, structured, and effective driving lessons</li>
+            </ul>
           </div>
           <label class="join-req-confirm">
             <input type="checkbox" id="join-req-check" />
@@ -511,6 +608,10 @@ function renderJoin() {
         </div>
 
         <button class="btn btn-navy btn-full btn-lg" id="join-submit">Apply to Join</button>
+        <div class="join-approval-notice">
+          <p>Once your instructor profile has been approved, you will receive a confirmation email. Your profile, including your photo and submitted details, will then be visible to users, allowing them to view your information and contact you directly.</p>
+          <p>If you have any questions or require assistance, please contact our team at <a href="mailto:support@professionaldrivinginstructorsnetwork.com">support@professionaldrivinginstructorsnetwork.com</a></p>
+        </div>
         <p class="join-reserve-note">Professional Driving Instructors Network reserves the right to verify credentials before approval.</p>
       </div>
     </div>`;
@@ -566,8 +667,7 @@ function renderContact() {
           <div class="contact-info">
             <h2>Get in Touch</h2>
             <p>Whether you're a learner or an instructor interested in joining, reach out and we'll get back to you promptly.</p>
-            <div class="contact-detail">${ICONS.mail}<span>hello@professionaldrivinginstructors.com.au</span></div>
-            <div class="contact-detail">${ICONS.phoneSmall}<span>1800 DRIVE IN (1800 374 833)</span></div>
+            <div class="contact-detail">${ICONS.mail}<span>support@professionaldrivinginstructorsnetwork.com</span></div>
             <div class="contact-detail">${ICONS.pin}<span>Melbourne, Victoria, Australia</span></div>
           </div>
           <div id="contact-form-wrap">
@@ -825,6 +925,19 @@ function bindPageEvents() {
     });
   }
 
+  /* Expertise counter */
+  const expertiseGrid = document.getElementById('join-expertise-grid');
+  const expertiseHint = document.getElementById('expertise-count-hint');
+  if (expertiseGrid && expertiseHint) {
+    expertiseGrid.addEventListener('change', () => {
+      const count = expertiseGrid.querySelectorAll('input:checked').length;
+      if (count < 3) expertiseHint.textContent = `Select at least ${3-count} more`;
+      else if (count > 5) expertiseHint.textContent = 'Maximum 5 selected — please deselect one';
+      else expertiseHint.textContent = `${count} selected ✓`;
+      expertiseHint.style.color = (count < 3 || count > 5) ? '#e53e3e' : '#38a169';
+    });
+  }
+
   /* Send enquiry modal */
   const enquiryBtn = document.getElementById('open-enquiry-btn');
   if (enquiryBtn) {
@@ -832,35 +945,6 @@ function bindPageEvents() {
       const inst = INSTRUCTORS.find(i => i.id === enquiryBtn.dataset.instructorId) || INSTRUCTORS[0];
       openEnquiryModal(inst);
     });
-  }
-
-  /* Photo upload */
-  const photoBtn         = document.getElementById('photo-upload-btn');
-  const photoInput       = document.getElementById('join-photo');
-  const photoPreview     = document.getElementById('photo-preview-img');
-  const photoPlaceholder = document.getElementById('photo-placeholder');
-  const photoArea        = document.getElementById('photo-upload-area');
-  if (photoBtn && photoInput) {
-    photoBtn.addEventListener('click', () => photoInput.click());
-    photoInput.addEventListener('change', () => {
-      const file = photoInput.files[0]; if (!file) return;
-      if (file.size > 5 * 1024 * 1024) { showFormError('join-form-box', 'Photo must be under 5 MB.'); return; }
-      const reader = new FileReader();
-      reader.onload = e => {
-        photoPreview.src = e.target.result; photoPreview.style.display = 'block';
-        photoPlaceholder.style.display = 'none'; photoBtn.textContent = 'Change Photo';
-      };
-      reader.readAsDataURL(file);
-    });
-    if (photoArea) {
-      photoArea.addEventListener('dragover', e => { e.preventDefault(); photoArea.classList.add('drag-over'); });
-      photoArea.addEventListener('dragleave', () => photoArea.classList.remove('drag-over'));
-      photoArea.addEventListener('drop', e => {
-        e.preventDefault(); photoArea.classList.remove('drag-over');
-        const file = e.dataTransfer.files[0];
-        if (file && file.type.startsWith('image/')) { photoInput.files = e.dataTransfer.files; photoInput.dispatchEvent(new Event('change')); }
-      });
-    }
   }
 
   /* Join form */
@@ -882,23 +966,49 @@ function bindPageEvents() {
       const exp    = document.getElementById('join-exp')?.value || '';
       const bio    = document.getElementById('join-bio')?.value || '';
       const radius = document.getElementById('join-radius')?.value || '10';
-      const tBonus = document.getElementById('join-travel-bonus')?.checked || false;
-      const tFee   = document.getElementById('join-travel-fee')?.checked   || false;
+      const vAuto  = document.getElementById('join-vehicle-auto')?.value || '';
+      const vManual= document.getElementById('join-vehicle-manual')?.value || '';
+
+      // Collect availability
+      const avail = ['avail-weekdays','avail-weekends','avail-evenings','avail-early']
+        .filter(id => document.getElementById(id)?.checked)
+        .map(id => document.getElementById(id).value);
+
+      // Collect expertise (3-5 required)
+      const expertise = [...document.querySelectorAll('#join-expertise-grid input:checked')].map(c => c.value);
+      if (expertise.length < 3 || expertise.length > 5) {
+        showFormError('join-form-box', 'Please select between 3 and 5 areas of expertise.'); return;
+      }
+
+      // Determine which web3forms key to use based on email match
+      // Rob: robert_samsung@hotmail.com → key 2c2335a7-edb1-4673-b7d7-6971217f4d96
+      // John: maryjoy.padiz1@gmail.com → key 1119cfb7-b03e-4f5d-ae4f-b8e3a077bac7
+      // Default admin key for others
+      const emailLower = email.toLowerCase();
+      let w3fKey = 'b9dcce58-e3f6-444a-b788-e5424d3edf9d'; // admin fallback
+      if (emailLower === dec([114,111,98,101,114,116,95,115,97,109,115,117,110,103,64,104,111,116,109,97,105,108,46,99,111,109])) {
+        w3fKey = '2c2335a7-edb1-4673-b7d7-6971217f4d96'; // Rob
+      } else if (emailLower === dec([109,97,114,121,106,111,121,46,112,97,100,105,122,49,64,103,109,97,105,108,46,99,111,109])) {
+        w3fKey = '1119cfb7-b03e-4f5d-ae4f-b8e3a077bac7'; // John
+      }
 
       setButtonLoading('join-submit', true, 'Apply to Join');
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'd7c943d4-eb3e-4af9-8aa8-2ce901e063e2',
+          access_key: w3fKey,
           subject: 'New Instructor Application — ' + name,
           from_name: 'Professional Driving Instructors Network',
-          form_type: 'Join the Network', Name: name, Email: email, Phone: phone,
+          form_type: 'Join the Network',
+          Name: name, Email: email, Phone: phone,
+          DIA_Number: dia, Year_Started: exp,
           Primary_Suburb: suburb, Travel_Radius_km: radius + ' km',
-          Travel_Bonus_Longer_Lessons: tBonus ? 'Yes' : 'No',
-          Travel_Fee_Outer_Areas: tFee ? 'Yes' : 'No',
-          Years_Experience: exp, DIA_Number: dia,
-          Requirements_Confirmed: 'Yes — all requirements confirmed', About: bio
+          Auto_Vehicle: vAuto || '(none)', Manual_Vehicle: vManual || '(none)',
+          Availability: avail.join(', ') || '(none selected)',
+          Areas_of_Expertise: expertise.join(' | '),
+          Requirements_Confirmed: 'Yes — all requirements confirmed',
+          About: bio
         })
       })
       .then(res => res.json())
