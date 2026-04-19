@@ -168,9 +168,10 @@ const ICONS = {
   shield:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
   document:   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
   phone:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>`,
-  user:       `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  user:       `<svg width="14" height="14" viewBox="2 2 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  userLg:     `<svg width="24" height="24" viewBox="2 2 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
   pin:        `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-  car:        `<svg width="22" height="14" viewBox="0 0 42 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 C2 14 5 8 10 7 L20 6 C26 6 30 6 33 7.5 L39 11 C40 12.5 41 14 41 15" /><line x1="2" y1="15" x2="41" y2="15" /><circle cx="9" cy="18" r="3.5" /><circle cx="33" cy="18" r="3.5" /><line x1="12.5" y1="18" x2="29.5" y2="18" /></svg>`,
+  car:        `<svg width="22" height="14" viewBox="0 0 120 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="2.6" d="M5 38 C5 36 5 34 7 31 L11 26 C13 23 16 20 20 18 L28 15 C32 13 38 11 46 10 L72 10 C82 10 90 11 96 14 L108 20 C112 23 115 27 115 31 L115 38 C115 39.5 113 40 111 40 L19 40 C10 40 5 39.5 5 38 Z"/><path stroke-width="1.2" fill="none" opacity="0.5" d="M22 28 L98 28"/><line stroke-width="1.6" x1="28" y1="15" x2="22" y2="28" opacity="0.65"/><line stroke-width="1.6" x1="96" y1="14" x2="98" y2="28" opacity="0.65"/><path stroke-width="1.3" fill="none" opacity="0.55" d="M28 15 C46 10.5 72 10.5 96 14"/><line stroke-width="1.1" x1="60" y1="11" x2="60" y2="28" opacity="0.4"/><circle cx="22" cy="43" r="7.2" stroke-width="2.5"/><circle cx="22" cy="43" r="3.0" stroke-width="1.5"/><line stroke-width="0.9" x1="22" y1="39.8" x2="22" y2="36.8" opacity="0.55"/><line stroke-width="0.9" x1="24.8" y1="40.8" x2="27.3" y2="38.7" opacity="0.55"/><line stroke-width="0.9" x1="23.7" y1="44.6" x2="25.9" y2="47" opacity="0.55"/><line stroke-width="0.9" x1="20.3" y1="44.6" x2="18.1" y2="47" opacity="0.55"/><line stroke-width="0.9" x1="19.2" y1="40.8" x2="16.7" y2="38.7" opacity="0.55"/><circle cx="98" cy="43" r="7.2" stroke-width="2.5"/><circle cx="98" cy="43" r="3.0" stroke-width="1.5"/><line stroke-width="0.9" x1="98" y1="39.8" x2="98" y2="36.8" opacity="0.55"/><line stroke-width="0.9" x1="100.8" y1="40.8" x2="103.3" y2="38.7" opacity="0.55"/><line stroke-width="0.9" x1="99.7" y1="44.6" x2="101.9" y2="47" opacity="0.55"/><line stroke-width="0.9" x1="96.3" y1="44.6" x2="94.1" y2="47" opacity="0.55"/><line stroke-width="0.9" x1="95.2" y1="40.8" x2="92.7" y2="38.7" opacity="0.55"/></svg>`,
   clock:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   dollar:     `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
   users:      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
@@ -292,7 +293,7 @@ function renderHome() {
           <div class="why-card"><div class="icon-circle">${ICONS.shield}</div><h3>Experienced Instructors</h3><p>Qualified professionals focused on helping learners succeed.</p></div>
           <div class="why-card"><div class="icon-circle">${ICONS.document}</div><h3>No Commission Platforms</h3><p>Instructors keep 100% of their lesson fees</p></div>
           <div class="why-card"><div class="icon-circle">${ICONS.phone}</div><h3>Direct Contact</h3><p>Connect directly with your instructor — no middleman</p></div>
-          <div class="why-card"><div class="icon-circle">${ICONS.user}</div><h3>Professional Standards</h3><p>Quality-focused instructors who take pride in their work</p></div>
+          <div class="why-card"><div class="icon-circle">${ICONS.userLg}</div><h3>Professional Standards</h3><p>Quality-focused instructors who take pride in their work</p></div>
         </div>
       </div>
     </section>
@@ -775,25 +776,38 @@ function openEnquiryModal(inst) {
     setEnquiryButtonLoading(true);
 
     const ct = CONTACT[inst.id] || {};
-    const instEmail = ct.e ? dec(ct.e) : '';
 
-    const templateParams = {
-      instructor_name:  inst.name,
-      instructor_email: instEmail,
-      to_email:         instEmail,
-      eq_name: name, eq_mobile: mobile, eq_email: email,
-      eq_suburb: suburb, eq_licence: licence, eq_transmission: transmission,
-      eq_days: days.length ? days.join(', ') : 'Not specified',
-      eq_starttime: starttime || 'Not specified',
-      eq_message: message || '(No message)',
-      reply_to: email,
-    };
+    // Use the instructor's own web3forms access key so the enquiry
+    // lands directly in their inbox
+    if (!ct.w3f) {
+      showEnquiryError('Online enquiry is not yet available for this instructor. Please call them directly.');
+      setEnquiryButtonLoading(false);
+      return;
+    }
 
-    const svc = ct.svc || 'service_4kd3c2x';
-    const tpl = ct.tpl || 'template_v9nyycm';
-
-    emailjs.send(svc, tpl, templateParams)
-      .then(() => {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key:      ct.w3f,
+        subject:         'New Lesson Enquiry from ' + name + ' — Professional Driving Instructors Network',
+        from_name:       'Professional Driving Instructors Network',
+        Instructor:      inst.name,
+        Student_Name:    name,
+        Student_Mobile:  mobile,
+        Student_Email:   email,
+        Suburb:          suburb,
+        Licence_Stage:   licence,
+        Transmission:    transmission,
+        Preferred_Days:  days.length ? days.join(', ') : 'Not specified',
+        Preferred_Time:  starttime || 'Not specified',
+        Message:         message || '(No message)',
+        replyto:         email,
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
         trackEnquiry(inst.id, inst.name);
         document.getElementById('enquiry-form-body').innerHTML = `
           <div class="success-box">
@@ -802,12 +816,15 @@ function openEnquiryModal(inst) {
             <p>Your enquiry has been sent directly to <strong>${inst.name}</strong>. They'll be in touch soon.</p>
             <p style="margin-top:12px;font-size:13.5px;color:var(--text-light)">For urgent bookings, call the instructor directly using the button on their profile.</p>
           </div>`;
-      })
-      .catch(err => {
-        console.error('EmailJS error:', err);
+      } else {
         setEnquiryButtonLoading(false);
-        showEnquiryError('Sorry, there was a problem sending your enquiry. Please try calling the instructor directly.');
-      });
+        showEnquiryError('Sorry, there was a problem sending your enquiry. Please try again or call the instructor directly.');
+      }
+    })
+    .catch(() => {
+      setEnquiryButtonLoading(false);
+      showEnquiryError('Network error. Please check your connection and try again.');
+    });
   });
 }
 
